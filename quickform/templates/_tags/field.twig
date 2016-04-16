@@ -1,0 +1,24 @@
+{% macro htmlAttributes(attributes) %}
+	{% for name, value in attributes %}
+		{{ name }}="{{ value|e('html') }}"
+	{% endfor %}
+{% endmacro %}
+
+{% from _self import htmlAttributes %}
+
+{% switch type %}
+
+	{% case 'textarea' %}
+		<textarea {{ htmlAttributes(attributes) }}>{{ content|e('html') }}</textarea>
+
+	{% case 'select' %}
+		<select {{ htmlAttributes(attributes) }}>
+			{% for option in options %}
+				<option {{ htmlAttributes(option.attributes) }}>{{ label|e('html') }}</option>
+			{% endfor %}
+		</select>
+
+	{% default %}
+		<input {{ htmlAttributes(attributes) }}>
+
+{% endswitch %}

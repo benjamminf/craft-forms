@@ -1,0 +1,11 @@
+<form method="post" action="" accept-charset="UTF-8">
+	{{ getCsrfInput() }}
+	<input type="hidden" name="action" value="quickForm/submitForm">
+	<input type="hidden" name="key" value="{{ key }}">
+
+	{% if honeypot %}
+		<input type="text" name="{{ honeypot }}" style="position: fixed; top: -9999px;" tabindex="-1" autocomplete="off" aria-hidden="true">
+	{% endif %}
+
+	{{ content }}
+</form>
