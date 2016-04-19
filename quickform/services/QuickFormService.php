@@ -3,19 +3,21 @@ namespace Craft;
 
 class QuickFormService extends BaseApplicationComponent
 {
-	public function getFormById($id)
+	public function getFormByKey($key)
 	{
+		$json = craft()->cache->get($this->_getCacheKey($key));
+		$data = JsonHelper::decode($json);
+		$form = QuickForm_FormModel::populateModel($data);
 
-	}
-
-	public function getFormByHandle($handle)
-	{
-
+		
 	}
 
 	public function saveForm(QuickForm_FormModel $form)
 	{
+		$key = $form->getKey();
+		$data = $form->getData();
 
+		craft()->cache->add($this->_getCacheKey($key), $data, 0);
 	}
 
 	public function getSubmissionById($id)
@@ -47,5 +49,10 @@ class QuickFormService extends BaseApplicationComponent
 	{
 		$this->saveSubmission($submission);
 		$this->emailSubmission($submission);
+	}
+
+	private function _getCacheKey($key)
+	{
+		return 'quickForms_' . $key;
 	}
 }

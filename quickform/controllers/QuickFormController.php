@@ -9,15 +9,10 @@ class QuickFormController extends BaseController
 	{
 		$this->requirePostRequest();
 
-		$submission = $this->_createSubmissionFromPost();
-	}
-
-	private function _createFormFromPost()
-	{
 		$key = craft()->request->getPost('key');
+		$form = craft()->quickForm->getFormByKey($key);
 
-
-		return false;
+		$submission = $this->_createSubmissionFromPost();
 	}
 
 	private function _createSubmissionFromPost()
