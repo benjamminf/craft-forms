@@ -64,4 +64,11 @@ class QuickFormPlugin extends BasePlugin
 	{
 		return $this->isCraftRequiredVersion();
 	}
+
+	public function addTwigExtension()
+	{
+		Craft::import('plugins.quickform.twigextensions.QuickFormTwigExtension');
+
+		return new QuickFormTwigExtension();
+	}
 }
