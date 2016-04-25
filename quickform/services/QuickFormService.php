@@ -7,9 +7,8 @@ class QuickFormService extends BaseApplicationComponent
 	{
 		$json = craft()->cache->get($this->_getCacheKey($key));
 		$data = JsonHelper::decode($json);
-		$form = QuickForm_FormModel::populateModel($data);
 
-		
+		return QuickForm_FormModel::populateModel($data);
 	}
 
 	public function saveForm(QuickForm_FormModel $form)

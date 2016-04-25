@@ -13,6 +13,11 @@ class QuickForm_FieldModel extends BaseModel
 		];
 	}
 
+	public function getHtml()
+	{
+
+	}
+
 	protected function defineAttributes()
 	{
 		return [

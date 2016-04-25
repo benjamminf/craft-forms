@@ -30,6 +30,11 @@ class QuickForm_FormModel extends BaseModel
 		];
 	}
 
+	public function getHtml()
+	{
+		return 'hey';
+	}
+
 	protected function defineAttributes()
 	{
 		return [
